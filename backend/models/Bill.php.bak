@@ -1,0 +1,70 @@
+<?php
+
+namespace app\models;
+
+use Yii;
+
+/**
+ * This is the model class for table "t_build".
+ *
+ * @property string $BILL_ID
+ * @property string $HOUSE_ID
+ * @property integer $PAY_AMOUNT
+ * @property string $PAY_START_DATE
+ * @property string $PAY_END_DATE
+ * @property string $PAY_STATUS
+ * @property string $CREATE_TIME
+ * @property string $PAY_USER
+ * @property string $OPER_TIME
+ * @property string $PAY_ACCOUNT
+ * @property string $REMAKR
+ * @property integer $STATUS
+ */
+class Bill extends \yii\db\ActiveRecord
+{
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return 't_bill';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['HOUSE_ID', 'PAY_AMOUNT', 'PAY_ACCOUNT'], 'required'],
+            [['PAY_AMOUNT'], 'number'],
+            [['HOUSE_ID'], 'string', 'max' => 24],
+            [['PAY_START_DATE', 'PAY_END_DATE', 'CREATE_TIME'], 'string', 'max' => 20],
+            [['PAY_USER','OPER_TIME'], 'string', 'max' => 50],
+            [['HOUSE_ID'], 'string', 'max' => 100],
+            [['REMAKR'], 'string', 'max' => 255],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'BILL_ID' => '账单编号',
+            'HOUSE_ID' => '所属房屋',
+            'PAY_AMOUNT' => '缴费总额',
+            'PAY_START_DATE' => '缴费项目开始时间',
+            'PAY_END_DATE' => '缴费项目结束时间',
+            'PAY_STATUS' => '缴费状态',
+            'CREATE_TIME' => '生成时间',
+            'PAY_USER' => '支付人员',
+            'OPER_TIME' => '支付时间',
+            'PAY_ACCOUNT' => '支付账户',
+            'REMAKR' => '备注',
+            'STATUS' => '状态',
+        ];
+    }
+}
+
